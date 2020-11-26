@@ -27,6 +27,7 @@ const bodyparser = __importStar(require("body-parser"));
 const morgan_1 = __importDefault(require("morgan"));
 const member_1 = require("./api/member/member");
 const member_detail_1 = require("./api/member/member_detail");
+const errorHandling_1 = require("./api/general/errorHandling");
 const app = express_1.default();
 const urlEnccodedParser = bodyparser.urlencoded({ extended: true });
 const authenticator = (req, res, next) => {
@@ -43,6 +44,7 @@ app.get('/', (req, res, next) => {
 });
 app.get('/api/memberlist', member_1.apiGetMember);
 app.get('/api/member/:id', member_detail_1.getMemberDetail);
+app.use(errorHandling_1.apiErrorHandler);
 app.listen(process.env.PORT || 3000, () => {
     console.log('running...');
 });

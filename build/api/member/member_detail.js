@@ -2,6 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getMemberDetail = void 0;
 const member_detail_1 = require("../../model/member/member_detail");
+const message_1 = require("../../model/member/message");
 exports.getMemberDetail = (req, res, next) => {
     const memberId = req.params.id || 0;
     console.log('memberId', memberId);
@@ -28,11 +29,6 @@ exports.getMemberDetail = (req, res, next) => {
         });
     }
     else {
-        res.status(200).json({
-            message: 'ok',
-            status: 200,
-            statusText: 'ok',
-            data: {}
-        });
+        return next(new message_1.APIError('member', 'member not found', 400));
     }
 };

@@ -1,5 +1,6 @@
 import { RequestHandler } from 'express';
 import { getMemberDetails } from '../../model/member/member_detail';
+import {  APIError } from '../../model/member/message';
 export const getMemberDetail:RequestHandler = (req, res, next) => {
     const memberId = req.params.id || 0
     console.log('memberId', memberId)
@@ -26,11 +27,6 @@ export const getMemberDetail:RequestHandler = (req, res, next) => {
             data: new getMemberDetails(findMemberId)
         })
     } else {
-        res.status(200).json({
-            message:'ok',
-            status:200,
-            statusText:'ok',
-            data: {}
-        })
+        return next(new APIError('member', 'member not found', 400))
     }
 }
