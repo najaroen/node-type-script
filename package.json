@@ -19,7 +19,9 @@
   },
   "homepage": "https://github.com/najaroen/node-type-script#readme",
   "dependencies": {
+    "@types/morgan": "^1.9.2",
     "express": "^4.17.1",
+    "morgan": "^1.10.0",
     "nodemon": "^2.0.6"
   },
   "devDependencies": {
